@@ -7,7 +7,7 @@ on:
 
 jobs:
     deploy:
-        runs-on: ubunto-latest # utilizando o Ubuntu para rodar o pipeline
+        runs-on: ubuntu-latest # utilizando o Ubuntu para rodar o pipeline
 
         steps:
             # 1. Checkout do código
