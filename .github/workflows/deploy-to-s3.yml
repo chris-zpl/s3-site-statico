@@ -7,25 +7,25 @@ on:
 
 jobs:
     deploy:
-        runs-on: ubunto-latest #utilizando o Ubuntu para rodar o pipeline
+        runs-on: ubunto-latest # utilizando o Ubuntu para rodar o pipeline
 
         steps:
             # 1. Checkout do código
-            - name: Checkout code
-            uses: actions/checkout@v2
+            -   name: Checkout code
+                uses: actions/checkout@v2
         
             # 2. Configuração do AWS CLI
-            - name: Set up AWS CLI
-            uses: aws-actions/configure-aws-credentials@v1
-            with:
-                aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
-                aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-                aws-region: us-east-1 #Altere para a sua região da AWS
+            -   name: Set up AWS CLI
+                uses: aws-actions/configure-aws-credentials@v1
+                with:
+                    aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+                    aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+                    aws-region: us-east-1 #Altere para a sua região da AWS
             
             # 3. Enviar os arquivos para o S3
-            - name: Deploy to S3
-            run: |
-            aws s3 sync . s3//sandbox-pucrs-devops/ --exclude ".git/*" --delete --exact-timestamps
+            -   name: Deploy to S3
+                run: |
+                    aws s3 sync . s3//sandbox-pucrs-devops/ --exclude ".git/*" --delete --exact-timestamps
 
             # 'sandbox-pucrs-devops' é o nome do seu bucket no S3
             # --delete remove arvuiso antigos no S3 que não existem mais no repositório
